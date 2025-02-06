@@ -14,16 +14,22 @@ type
 
   TFormMain = class(TForm)
     Button1: TButton;
-    ButtonShowSecond: TButton;
-    ButtonClose: TButton;
+    Button2: TButton;
     ButtonAdd: TButton;
     ButtonClear: TButton;
+    ButtonClose: TButton;
     ButtonDelete: TButton;
+    ButtonShowSecond: TButton;
     EditInput: TEdit;
     EditName: TEdit;
     Label1: TLabel;
+    Label2: TLabel;
     LabelName: TLabel;
     ListBox1: TListBox;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
     procedure Button1Click(Sender: TObject);
     procedure ButtonAddClick(Sender: TObject);
     procedure ButtonClearClick(Sender: TObject);

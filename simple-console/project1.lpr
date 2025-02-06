@@ -168,6 +168,25 @@ begin
   student.Destroy;
 end;
 
+procedure ExceptionExample;
+var
+  x: Integer;
+  y: Integer;
+  res: Double;
+begin
+  x := 1;
+  y := 0;
+  //try
+  //  if y = 0 then
+  //     raise Exception.Create('/ 0');
+  //  res := x / y;
+  //except on e: Exception do
+  //begin
+  //  WriteLn('Error: ' + e.Message);
+  //end;
+  //end;
+end;
+
 var
   x: Integer;
   c: Char;
@@ -211,6 +230,8 @@ begin
   ObjectExample;
 
   MyClassExample;
+
+  ExceptionExample;
 
   ReadLn;
 end.
