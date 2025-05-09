@@ -163,9 +163,28 @@ var
 begin
   WriteLn('ObjectExample');
   student := TStudent.Create('Tom', 18);
-  Assert(student.Age = 18, '');
-  Assert(student.Name = 'Tom', '');
+  repeat
+    Assert(student.Age = 18, '');
+    Assert(student.Name = 'Tom', '');
+  until True;
   student.Destroy;
+end;
+
+procedure RepeatExample;
+var
+  i: Integer;
+begin
+  WriteLn('RepeatExample');
+  i := 0;
+  repeat
+    WriteLn(i);
+    i := i + 1;
+    if i = 10 then
+    begin
+      Break;
+    end;
+  until False;
+  WriteLn('RepeatExample');
 end;
 
 procedure ExceptionExample;
@@ -185,6 +204,26 @@ begin
   //  WriteLn('Error: ' + e.Message);
   //end;
   //end;
+end;
+
+procedure PointerExample;
+var
+  x, y: Integer;
+  p: ^Integer;
+  pEmpty: ^Integer;
+begin
+  x := 1;
+  y := 0;
+  p := @x;
+  y := p^;
+  Assert(y = 1, '');
+  p^ := 2;
+  Assert(x = 2, '');
+
+  New(pEmpty); // 申請內存
+  pEmpty^:=y;
+  Assert(pEmpty^ = 1, '');
+  Dispose(pEmpty); // 釋放內存
 end;
 
 var
@@ -232,6 +271,10 @@ begin
   MyClassExample;
 
   ExceptionExample;
+
+  RepeatExample;
+
+  PointerExample;
 
   ReadLn;
 end.
