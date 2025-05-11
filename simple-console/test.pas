@@ -1,6 +1,7 @@
 unit Test;
 
 {$mode ObjFPC}{$H+}
+{$modeswitch advancedrecords}
 
 interface
 
@@ -12,6 +13,7 @@ function Add(x, y: Integer): Integer;
 procedure SwapValue(var x, y: Integer); overload;
 procedure SwapValue(var x, y: String); overload;
 procedure MyClassExample;
+procedure TListNodeExample;
 
 implementation
 
@@ -28,6 +30,16 @@ type
 
   // 泛型容器
   TMyList = specialize TFPGList<TMyClass>;
+
+  generic TListNode<T> = record
+  type
+    TSelf = specialize TListNode<T>;
+    PSelf = ^TSelf;
+  public
+    Value: T;
+    Prev: PSelf;
+    Next: PSelf;
+  end;
 
 procedure MyClassExample;
 type
@@ -74,6 +86,38 @@ begin
   temp := x;
   x := y;
   y := temp;
+end;
+
+procedure TListNodeExample;
+type
+  TListNodeInt = specialize TListNode<Integer>;
+var
+  node1: ^TListNodeInt;
+  node2: ^TListNodeInt;
+  node3: ^TListNodeInt;
+begin
+  New(node1);
+  New(node2);
+  New(node3);
+
+  node1^.Value := 1;
+  node2^.Value := 2;
+  node3^.Value := 3;
+
+  node1^.Next := node2;
+  node1^.Prev := Nil;
+
+  node2^.Prev := node1;
+  node2^.Next := node3;
+
+  node3^.Prev := node2;
+  node3^.Next := Nil;
+
+  Assert(node1^.Next^.Value = 2, '');
+
+  Dispose(node1);
+  Dispose(node2);
+  Dispose(node3);
 end;
 
 end.

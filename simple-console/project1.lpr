@@ -1,6 +1,6 @@
 program project1;
 
-Uses SysUtils, Test, StudentUnit;
+Uses SysUtils, Test, StudentUnit, fgl;
 
 function Add(x: Integer; y: Integer): Integer;
 var
@@ -206,6 +206,20 @@ begin
   //end;
 end;
 
+procedure TFPGListExample;
+type
+  TListInt = specialize TFPGList<Integer>;
+var
+  list: TListInt;
+begin
+  list := TListInt.Create;
+  list.Add(1);
+  list.Add(2);
+  list.Add(3);
+  Assert(list.Count = 3, '');
+  list.Destroy;
+end;
+
 procedure PointerExample;
 var
   x, y: Integer;
@@ -275,6 +289,10 @@ begin
   RepeatExample;
 
   PointerExample;
+
+  TFPGListExample;
+
+  Test.TListNodeExample;
 
   ReadLn;
 end.
