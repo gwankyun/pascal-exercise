@@ -41,6 +41,17 @@ type
     Next: PSelf;
   end;
 
+  generic TList<T> = record
+  type
+    TItem = specialize TListNode<T>;
+    PItem = ^TItem;
+  public
+    Head: PItem;
+    Tail: PItem;
+  end;
+
+procedure
+
 procedure MyClassExample;
 type
   TIntList = specialize TFPGList<Integer>;
