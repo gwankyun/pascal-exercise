@@ -50,8 +50,6 @@ type
     Tail: PItem;
   end;
 
-procedure
-
 procedure MyClassExample;
 type
   TIntList = specialize TFPGList<Integer>;
